@@ -8,15 +8,24 @@
     <artifactId>Agricola</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
+        <project.scm.id>github</project.scm.id>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <sonar.projectKey>paweln1975_Agricola</sonar.projectKey>
         <sonar.organization>paweln1975</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.login>daf8ec36539d3f1aa28f5fb16d4e724d51867803</sonar.login>
     </properties>
+
+    <scm>
+        <connection>scm:git:git://github.com/paweln1975/Agricola</connection>
+        <developerConnection>scm:git:https://github.com/paweln1975/Agricola</developerConnection>
+        <url>https://github.com/paweln1975/Agricola</url>
+        <tag>v1.0</tag>
+    </scm>
 
     <build>
         <plugins>
@@ -74,6 +83,18 @@
                         <include>**/*Test.java</include>
                     </includes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <goalPrefix>goalPrefix</goalPrefix>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.7.0.1746</version>
             </plugin>
         </plugins>
 
