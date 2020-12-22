@@ -10,6 +10,13 @@ public class Engine {
     }
 
     public Game getGame() {
-        return this.game; // test 1
+        return this.game;
+    }
+
+    public void startGame() {
+        if (game.getGameStatus() == GameStatus.NEW) {
+            this.game.increaseRoundNumber();
+            this.game.setGameStatus(GameStatus.STARTED);
+        }
     }
 }

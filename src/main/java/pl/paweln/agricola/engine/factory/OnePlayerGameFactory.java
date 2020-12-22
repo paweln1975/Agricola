@@ -4,6 +4,7 @@ public class OnePlayerGameFactory extends AbstractGameFactory {
 
     public OnePlayerGameFactory(String gameName, String ... players) {
         super(gameName, players);
+        validatePlayers(1);
     }
 
     @Override
