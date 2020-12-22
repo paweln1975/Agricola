@@ -8,4 +8,8 @@ public class Engine {
     public Engine(GameFactory factory) {
         this.game = factory.createGame();
     }
+
+    public Game getGame() {
+        return this.game;
+    }
 }
