@@ -4,6 +4,7 @@ public class ThreePlayerGameFactory extends AbstractGameFactory {
 
     public ThreePlayerGameFactory(String gameName, String ... players) {
         super(gameName, players);
+        validatePlayers(3);
     }
     @Override
     protected void createPlayerBasedAction() {
