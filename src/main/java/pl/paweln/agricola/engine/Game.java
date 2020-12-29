@@ -62,6 +62,12 @@ public class Game {
         return ++this.roundNumber;
     }
 
+    public Player getPlayer(int number) {
+        if (number <= 0 || number > this.playerList.size())
+            throw new IllegalArgumentException("This game is configured for " + this.playerList.size() + " player(s), but requested is:" + number);
+        return this.playerList.get(number-1);
+    }
+
     @Override
     public String toString() {
         return "Game{" +

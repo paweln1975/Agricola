@@ -2,6 +2,8 @@ package pl.paweln.agricola.engine.factory;
 
 import pl.paweln.agricola.engine.Game;
 import pl.paweln.agricola.engine.util.Randomizer;
+import pl.paweln.agricola.player.HouseType;
+import pl.paweln.agricola.player.ResourceType;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -10,15 +12,15 @@ import java.util.List;
 public abstract class AbstractGameFactory implements GameFactory {
     protected GameBuilder gameBuilder = new GameBuilder();
 
-    private String gameName;
-    private List<String> players = new LinkedList<>();
+    private final String gameName;
+    private final List<String> players = new LinkedList<>();
 
-    private Randomizer<String> playerNamesRandomizer;
+    private final Randomizer<String> playerOrderRandomizer;
 
     protected AbstractGameFactory(String gameName, String ... players) {
         this.gameName = gameName;
         Collections.addAll(this.players, players);
-        this.playerNamesRandomizer = new Randomizer<>(this.players);
+        this.playerOrderRandomizer = new Randomizer<>(this.players);
     }
 
     protected void validatePlayers(int expectedPlayersCount) {
@@ -44,15 +46,17 @@ public abstract class AbstractGameFactory implements GameFactory {
 
     public void setupPlayers() {
         for (int i = 0; i < this.players.size(); i++) {
-            this.gameBuilder.addPlayer(
-                this.playerNamesRandomizer.selectRandomElementAndRemove()
-            );
+            this.gameBuilder
+                    .configurePlayer(this.playerOrderRandomizer.selectRandomElementAndRemove())
+                    .withRandomizedColor()
+                    .withHouseType(HouseType.WOODEN)
+                    .withResource(ResourceType.FOOD, (i == 0 ) ? 2 : 3);
         }
     }
 
     private void setupBasicParameter() {
         this.gameBuilder
-                .addGameName(this.gameName);
+                .withName(this.gameName);
     }
 
     private void createPredefinedActions() {
