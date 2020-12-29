@@ -4,10 +4,10 @@ public class Field {
     private final int x;
     private final int y;
     private FieldType type;
-    boolean hasLeftFence;
-    boolean hasRightFence;
-    boolean hasTopFence;
-    boolean hasBottomFence;
+    private boolean hasLeftFence;
+    private boolean hasRightFence;
+    private boolean hasTopFence;
+    private boolean hasBottomFence;
 
     public Field(int x, int y) {
         this.x = x;
@@ -31,35 +31,35 @@ public class Field {
         this.type = type;
     }
 
-    public boolean isHasLeftFence() {
+    public boolean hasLeftFence() {
         return hasLeftFence;
     }
 
-    public void setHasLeftFence(boolean hasLeftFence) {
+    public void setLeftFence(boolean hasLeftFence) {
         this.hasLeftFence = hasLeftFence;
     }
 
-    public boolean isHasRightFence() {
+    public boolean hasRightFence() {
         return hasRightFence;
     }
 
-    public void setHasRightFence(boolean hasRightFence) {
+    public void setRightFence(boolean hasRightFence) {
         this.hasRightFence = hasRightFence;
     }
 
-    public boolean isHasTopFence() {
+    public boolean hasTopFence() {
         return hasTopFence;
     }
 
-    public void setHasTopFence(boolean hasTopFence) {
+    public void setTopFence(boolean hasTopFence) {
         this.hasTopFence = hasTopFence;
     }
 
-    public boolean isHasBottomFence() {
+    public boolean hasBottomFence() {
         return hasBottomFence;
     }
 
-    public void setHasBottomFence(boolean hasBottomFence) {
+    public void setBottomFence(boolean hasBottomFence) {
         this.hasBottomFence = hasBottomFence;
     }
 }

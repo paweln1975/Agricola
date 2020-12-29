@@ -12,20 +12,26 @@ public class Board {
     public Board() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 3; j++) {
-                fields[i][j] = new Field(i, j);
+                fields[i][j] = new Field(i+1, j+1);
                 this.fieldList.add(fields[i][j]);
             }
         }
-        getField(0, 0).setType(FieldType.HOUSE);
-        getField(0, 1).setType(FieldType.HOUSE);
+        getField(1, 1).setType(FieldType.HOUSE);
+        getField(1, 2).setType(FieldType.HOUSE);
+    }
+
+    public Field getField(int number) {
+        if (number <= 0 || number > this.fieldList.size())
+            throw new IllegalArgumentException("Board games has 15 fields, but requested is:" + number);
+        return this.fieldList.get(number-1);
     }
 
     public Field getField(int x, int y) {
-        if (x < 0 || x > 4)
+        if (x <= 0 || x > 5)
             throw new IllegalArgumentException("Illegal reference to the player board. Board has 5 fields width");
-        if (y < 0 || y > 2)
+        if (y <= 0 || y > 3)
             throw new IllegalArgumentException("Illegal reference to the player board. Board has 3 fields height");
-        return fields[x][y];
+        return fields[x-1][y-1];
     }
 
     public HouseType getHouseType() {

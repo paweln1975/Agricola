@@ -1,7 +1,7 @@
 package pl.paweln.agricola.engine.factory;
 
 import pl.paweln.agricola.engine.Game;
-import pl.paweln.agricola.engine.util.Randomizer;
+import pl.paweln.agricola.util.Randomizer;
 import pl.paweln.agricola.player.Color;
 import pl.paweln.agricola.player.HouseType;
 import pl.paweln.agricola.player.Player;
