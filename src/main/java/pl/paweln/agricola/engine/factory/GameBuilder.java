@@ -1,30 +1,18 @@
 package pl.paweln.agricola.engine.factory;
 
 import pl.paweln.agricola.engine.Game;
-import pl.paweln.agricola.engine.util.Randomizer;
-import pl.paweln.agricola.player.Color;
-import pl.paweln.agricola.player.Player;
-
-import java.util.Arrays;
 
 public class GameBuilder {
-    private Game game = new Game();
+    protected Game game = new Game();
 
-    private Randomizer<Color> colorRandomizer = new Randomizer<>(
-            Arrays.asList(Color.values()));
-
-    protected GameBuilder addGameName(String gameName) {
+    protected GameBuilder withName(String gameName) {
         this.game.setName(gameName);
         return this;
     }
 
-    protected GameBuilder addPlayer(String playerName) {
-        Player player = new Player(playerName);
-        player.setColor(colorRandomizer.selectRandomElementAndRemove());
-        this.game.addPlayer(player);
-        return this;
+    public GamePlayerBuilder configurePlayer(String playerName) {
+        return new GamePlayerBuilder(this.game, playerName);
     }
-
 
     public Game build() {
         return this.game;

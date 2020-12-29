@@ -1,4 +1,4 @@
-package pl.paweln.agricola.engine.util;
+package pl.paweln.agricola.util;
 
 import java.security.SecureRandom;
 import java.util.*;
