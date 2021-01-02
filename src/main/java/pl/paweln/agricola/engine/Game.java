@@ -2,10 +2,14 @@ package pl.paweln.agricola.engine;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.paweln.agricola.action.Action;
+import pl.paweln.agricola.action.ActionType;
 import pl.paweln.agricola.player.Player;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
@@ -13,8 +17,11 @@ public class Game {
     private String name;
     private int roundNumber;
     private GameStatus gameStatus;
+    private int order;
 
     private final List<Player> playerList = new LinkedList<>();
+
+    private final Map<ActionType, Action> actionMap = new LinkedHashMap<>();
 
     public Game() {
         gameStatus = GameStatus.NEW;
@@ -50,9 +57,19 @@ public class Game {
         }
     }
 
+    public void addAction(Action action) {
+        action.setOrder(++order);
+        this.actionMap.put(action.getActionType(), action);
+        if (logger.isDebugEnabled()) {
+            logger.debug(String.format("addAction: %s", action.toString()));
+        }
+    }
+
     public int getPlayersCount() {
         return this.playerList.size();
     }
+
+    public int getActionCount() { return this.actionMap.size(); }
 
     public int getRoundNumber() {
         return roundNumber;

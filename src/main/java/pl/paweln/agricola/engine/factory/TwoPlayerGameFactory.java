@@ -8,6 +8,8 @@ public class TwoPlayerGameFactory extends AbstractGameFactory {
     }
     @Override
     protected void createPlayerBasedAction() {
-        logger.debug("No player actions for 2P game.");
+        if (logger.isDebugEnabled()) {
+            logger.debug("No player actions for 2P game.");
+        }
     }
 }

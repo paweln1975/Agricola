@@ -14,6 +14,10 @@ public class GameBuilder {
         return new GamePlayerBuilder(this.game, playerName);
     }
 
+    public GameActionBuilder configureActions() {
+        return new GameActionBuilder(this.game);
+    }
+
     public Game build() {
         return this.game;
     }

@@ -29,6 +29,8 @@ public class Player {
                 new Resource(ResourceType.WILD_BOAR),
                 new Resource(ResourceType.COW),
                 new Resource(ResourceType.FOOD),
+                new Resource(ResourceType.GRAIN),
+                new Resource(ResourceType.VEGETABLE)
         };
 
         for (Resource resource : res) {
