@@ -1,6 +1,7 @@
 package pl.paweln.agricola.action.factory;
 
 import pl.paweln.agricola.action.AccumulateEveryRound;
+import pl.paweln.agricola.action.AccumulateWhenEmpty;
 import pl.paweln.agricola.action.ActionType;
 import pl.paweln.agricola.action.ResourceAction;
 import pl.paweln.agricola.player.ResourceType;
@@ -27,10 +28,22 @@ public class ResourceActionBuilder extends ActionBuilder<ResourceActionBuilder> 
         return self();
     }
 
+    public ResourceActionBuilder withAccumulationWhenEmpty() {
+        ((ResourceAction)super.action).setAccumulationLogic(
+                new AccumulateWhenEmpty()
+        );
+        return self();
+    }
+
 
     @Override
     public ResourceActionBuilder self() {
         return super.self();
+    }
+
+    @Override
+    public ResourceAction build() {
+        return (ResourceAction)super.action;
     }
 
 }

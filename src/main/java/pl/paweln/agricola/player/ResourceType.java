@@ -8,5 +8,7 @@ public enum ResourceType {
     SHEEP,
     WILD_BOAR,
     COW,
-    FOOD
+    FOOD,
+    GRAIN,
+    VEGETABLE
 }

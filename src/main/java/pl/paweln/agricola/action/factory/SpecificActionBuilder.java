@@ -7,7 +7,9 @@ public class SpecificActionBuilder<T extends SpecificAction> extends ActionBuild
         try {
             super.action = tClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            e.printStackTrace();
+            if (logger.isErrorEnabled()) {
+                logger.error("Error creating the specific action", e);
+            }
         }
     }
 

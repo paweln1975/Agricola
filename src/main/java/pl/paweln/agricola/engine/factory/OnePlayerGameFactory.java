@@ -9,7 +9,9 @@ public class OnePlayerGameFactory extends AbstractGameFactory {
 
     @Override
     protected void createPlayerBasedAction() {
-        logger.debug("No player actions for 1P game.");
+        if (logger.isDebugEnabled()) {
+            logger.debug("No player actions for 1P game.");
+        }
     }
 
 }

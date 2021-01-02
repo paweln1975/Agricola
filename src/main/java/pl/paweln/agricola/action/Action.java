@@ -6,8 +6,10 @@ import pl.paweln.agricola.player.Player;
 public abstract class Action {
     private final ActionType actionType;
     protected Player player;
+    // todo implement round number action availability
     private int roundNumberAvailable;
     private String name;
+    private int order;
 
     protected Action(ActionType actionType) {
         this.actionType = actionType;
@@ -37,4 +39,21 @@ public abstract class Action {
         return this.actionType;
     }
 
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
+    @Override
+    public String toString() {
+        return "Action{" +
+                "actionType=" + actionType +
+                ", name='" + name + '\'' +
+                ", order=" + order +
+                ", class=" + this.getClass().getSimpleName() +
+                '}';
+    }
 }

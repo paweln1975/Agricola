@@ -9,13 +9,13 @@ import pl.paweln.agricola.player.HouseType;
 import pl.paweln.agricola.player.ResourceType;
 
 public class GameFactoryTest {
-    String gameName;
+    private String gameName;
     private static int gameCounter;
-    String firstPlayer = "Player 1";
-    String secondPlayer = "Player 2";
-    String thirdPlayer = "Player 3";
-    String fourthPlayer = "Player 4";
-    String fifthPlayer = "Player 5";
+    private String firstPlayer = "Player 1";
+    private String secondPlayer = "Player 2";
+    private String thirdPlayer = "Player 3";
+    private String fourthPlayer = "Player 4";
+    private String fifthPlayer = "Player 5";
 
     @Before
     public void setup() {
@@ -31,6 +31,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(1, game.getPlayersCount());
+        Assert.assertEquals(23, game.getActionCount());
     }
 
     @Test
@@ -41,6 +42,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(2, game.getPlayersCount());
+        Assert.assertEquals(23, game.getActionCount());
     }
 
     @Test
@@ -51,6 +53,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(3, game.getPlayersCount());
+        Assert.assertEquals(27, game.getActionCount());
     }
 
     @Test
@@ -61,6 +64,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(4, game.getPlayersCount());
+        Assert.assertEquals(29, game.getActionCount());
     }
 
     @Test
@@ -71,6 +75,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(5, game.getPlayersCount());
+        Assert.assertEquals(29, game.getActionCount());
     }
 
     @Test (expected = IllegalArgumentException.class)

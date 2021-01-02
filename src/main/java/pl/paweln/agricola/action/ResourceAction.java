@@ -6,6 +6,8 @@ import pl.paweln.agricola.player.ResourceType;
 public class ResourceAction extends Action {
     private Resource resource;
     private int accumulationAmount;
+
+    // todo use the logic when round start
     private AccumulationLogic accumulationLogic;
 
     public ResourceAction (ActionType actionType) {

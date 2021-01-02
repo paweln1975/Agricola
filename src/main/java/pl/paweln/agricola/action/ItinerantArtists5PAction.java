@@ -8,5 +8,6 @@ public class ItinerantArtists5PAction extends SpecificAction {
 
     public ItinerantArtists5PAction() {
         super(ActionType.TAKE_FOOD_OR_BUILD_1_ROOM_5P);
+        super.setName("ItinerantArtists Or Build 1 Room");
     }
 }
