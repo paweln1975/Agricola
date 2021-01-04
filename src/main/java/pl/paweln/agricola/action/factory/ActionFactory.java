@@ -10,10 +10,14 @@ public class ActionFactory {
         Action action;
         switch (actionType) {
             case BUILD_ROOMS_OR_BARNS:
-                action = (new SpecificActionBuilder<>(BuildRoomsOrBarnsAction.class)).build();
+                action = (new SpecificActionBuilder<>(BuildRoomsOrBarnsAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case STARTING_PLAYER:
-                action = (new SpecificActionBuilder<>(StartingPlayerAction.class)).build();
+                action = (new SpecificActionBuilder<>(StartingPlayerAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case TAKE_1_GRAIN:
                 action = createResourceAction(
@@ -25,10 +29,14 @@ public class ActionFactory {
                         );
                 break;
             case PLOW_1_FIELD:
-                action = (new SpecificActionBuilder<>(PlowFieldAction.class)).build();
+                action = (new SpecificActionBuilder<>(PlowFieldAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case BUILD_1_BARN_OR_BAKE_BREAD:
-                action = (new SpecificActionBuilder<>(Build1BarnOrBakeBreadAction.class)).build();
+                action = (new SpecificActionBuilder<>(Build1BarnOrBakeBreadAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case DAY_LABOUR:
                 action = createResourceAction(
@@ -85,10 +93,14 @@ public class ActionFactory {
                 );
                 break;
             case TAKE_1RESOURCE_1F_3P:
-                action = (new SpecificActionBuilder<>(Take1ResourcePlus1FAction.class)).build();
+                action = (new SpecificActionBuilder<>(Take1ResourcePlus1FAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case TAKE_2RESOURCES_3P_4P:
-                action = (new SpecificActionBuilder<>(Take2ResourcesAction.class)).build();
+                action = (new SpecificActionBuilder<>(Take2ResourcesAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case TAKE_CLAY_1_ACC_3P:
                 action = createResourceAction(
@@ -118,7 +130,9 @@ public class ActionFactory {
                 );
                 break;
             case TAKE_1R_1S_1F_4P:
-                action = (new SpecificActionBuilder<>(Take1R1S1FAction.class)).build();
+                action = (new SpecificActionBuilder<>(Take1R1S1FAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case TAKE_WOOD_4_ACC_5P:
                 action = createResourceAction(
@@ -139,7 +153,9 @@ public class ActionFactory {
                 );
                 break;
             case TAKE_FOOD_OR_BUILD_1_ROOM_5P:
-                action = (new SpecificActionBuilder<>(ItinerantArtists5PAction.class)).build();
+                action = (new SpecificActionBuilder<>(ItinerantArtists5PAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case TAKE_FOOD_4P:
                 action = createResourceAction(
@@ -151,19 +167,27 @@ public class ActionFactory {
                 );
                 break;
             case TAKE_ANIMALS:
-                action = (new SpecificActionBuilder<>(GrangeAction.class)).build();
+                action = (new SpecificActionBuilder<>(GrangeAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case TAKE_1R_1S_1W_5P:
-                action = (new SpecificActionBuilder<>(Take1R1S1WAction.class)).build();
+                action = (new SpecificActionBuilder<>(Take1R1S1WAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case TAKE_2_RESOURCES_OR_FAMILY_GROW_5P:
-                action = (new SpecificActionBuilder<>(FamilyGrow5PAction.class)).build();
+                action = (new SpecificActionBuilder<>(FamilyGrow5PAction.class))
+                        .availableFromRound(1)
+                        .build();
                 break;
             case BUILD_FENCES:
-                action = (new SpecificActionBuilder<>(BuildFencesAction.class)).build();
+                action = (new SpecificActionBuilder<>(BuildFencesAction.class))
+                        .build();
                 break;
             case BUILD_MAJOR_IMPROVEMENT:
-                action = (new SpecificActionBuilder<>(BuildImprovementAction.class)).build();
+                action = (new SpecificActionBuilder<>(BuildImprovementAction.class))
+                        .build();
                 break;
             case TAKE_SHEEP:
                 action = createResourceAction(
@@ -175,13 +199,16 @@ public class ActionFactory {
                 );
                 break;
             case SOW_OR_BAKE_BREAD:
-                action = (new SpecificActionBuilder<>(SowOrBakeBreadAction.class)).build();
+                action = (new SpecificActionBuilder<>(SowOrBakeBreadAction.class))
+                        .build();
                 break;
             case RENOVATION_AND_BUILD_IMPROVEMENT:
-                action = (new SpecificActionBuilder<>(AfterRenovationBuildImprovementAction.class)).build();
+                action = (new SpecificActionBuilder<>(AfterRenovationBuildImprovementAction.class))
+                        .build();
                 break;
             case FAMILY_GROW:
-                action = (new SpecificActionBuilder<>(FamilyGrowAction.class)).build();
+                action = (new SpecificActionBuilder<>(FamilyGrowAction.class))
+                        .build();
                 break;
             case TAKE_STONE_1_ACC_PH2:
                 action = createResourceAction(
@@ -229,13 +256,17 @@ public class ActionFactory {
                 );
                 break;
             case PLOW_1_FIELD_OR_SOW:
-                action = (new SpecificActionBuilder<>(PlowOrSowAction.class)).build();
+                action = (new SpecificActionBuilder<>(PlowOrSowAction.class))
+                        .build();
                 break;
             case FAMILY_GROW_DESPITE_LACK_OF_PLACE:
-                action = (new SpecificActionBuilder<>(FamilyGrowDespiteLackOfPlaceAction.class)).build();
+                action = (new SpecificActionBuilder<>(FamilyGrowDespiteLackOfPlaceAction.class))
+                        .build();
                 break;
             case RENOVATION_AND_BUILD_FENCES:
-                action = (new SpecificActionBuilder<>(AfterRenovationBuildFences.class)).build();
+                action = (new SpecificActionBuilder<>(AfterRenovationBuildFences.class))
+                        .availableFromRound(14)
+                        .build();
                 break;
             default:
                 throw new UnsupportedOperationException("There is possibility to create only well-known actions");
@@ -251,6 +282,7 @@ public class ActionFactory {
         ResourceActionBuilder builder = new ResourceActionBuilder(actionType);
         builder.withName(name)
                 .withResourceType(resourceType)
+                .availableFromRound(1)
                 .withAccumulation(accumulationAmount);
         if (accumulateOnlyWhenEmpty) {
             builder.withAccumulationWhenEmpty();

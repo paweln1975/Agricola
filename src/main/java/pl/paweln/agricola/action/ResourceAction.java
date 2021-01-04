@@ -7,7 +7,6 @@ public class ResourceAction extends Action {
     private Resource resource;
     private int accumulationAmount;
 
-    // todo use the logic when round start
     private AccumulationLogic accumulationLogic;
 
     public ResourceAction (ActionType actionType) {
@@ -38,5 +37,9 @@ public class ResourceAction extends Action {
     @Override
     public void perform() {
         throw new UnsupportedOperationException("Operation not implemented yet");
+    }
+
+    public void accumulate() {
+        this.accumulationLogic.addResources(this);
     }
 }
