@@ -3,6 +3,9 @@ package pl.paweln.agricola.engine.factory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import pl.paweln.agricola.action.Action;
+import pl.paweln.agricola.action.ActionType;
+import pl.paweln.agricola.action.factory.ActionFactory;
 import pl.paweln.agricola.engine.Game;
 import pl.paweln.agricola.engine.GameType;
 import pl.paweln.agricola.player.HouseType;
@@ -31,7 +34,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(1, game.getPlayersCount());
-        Assert.assertEquals(23, game.getActionCount());
+        Assert.assertEquals(24, game.getActionCount());
     }
 
     @Test
@@ -42,7 +45,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(2, game.getPlayersCount());
-        Assert.assertEquals(23, game.getActionCount());
+        Assert.assertEquals(24, game.getActionCount());
     }
 
     @Test
@@ -53,7 +56,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(3, game.getPlayersCount());
-        Assert.assertEquals(27, game.getActionCount());
+        Assert.assertEquals(28, game.getActionCount());
     }
 
     @Test
@@ -64,7 +67,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(4, game.getPlayersCount());
-        Assert.assertEquals(29, game.getActionCount());
+        Assert.assertEquals(30, game.getActionCount());
     }
 
     @Test
@@ -75,7 +78,7 @@ public class GameFactoryTest {
 
         Assert.assertEquals(this.gameName, game.getName());
         Assert.assertEquals(5, game.getPlayersCount());
-        Assert.assertEquals(29, game.getActionCount());
+        Assert.assertEquals(30, game.getActionCount());
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -114,13 +117,7 @@ public class GameFactoryTest {
         Assert.assertEquals(expectedNextPlayerFood, game.getPlayer(3).getResourceAmount(ResourceType.FOOD));
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void testWrongPlayerAccess() {
-        GameFactory gameFactory = GameFactoryManager.createFactory(GameType.GAME_3P, this.gameName,
-                firstPlayer, secondPlayer, thirdPlayer);
-        Game game = gameFactory.createGame();
-        game.getPlayer(4);
-    }
+
 
     @Test
     public void testInitialHouseType() {
@@ -145,5 +142,20 @@ public class GameFactoryTest {
         Assert.assertEquals(expHouseSize, game.getPlayer(2).getBoard().getHouseSize());
 
     }
+
+    @Test
+    public void testActionOrder() {
+        GameFactory gameFactory = GameFactoryManager.createFactory(GameType.GAME_5P, this.gameName,
+                firstPlayer, secondPlayer, thirdPlayer, fourthPlayer, fifthPlayer);
+        Game game = gameFactory.createGame();
+
+        int counter = 0;
+        for(Action action : game.getActions()) {
+            counter++;
+            Assert.assertEquals(counter, action.getOrder());
+        }
+    }
+
+
 
 }

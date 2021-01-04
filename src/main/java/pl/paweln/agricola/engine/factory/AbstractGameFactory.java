@@ -71,7 +71,7 @@ public abstract class AbstractGameFactory implements GameFactory {
                 .withType(ActionType.PLOW_1_FIELD)
                 .withType(ActionType.TAKE_REED_1_ACC)
                 .withType(ActionType.CATCH_FISH)
-                .withType(ActionType.SOW_OR_BAKE_BREAD)
+                .withType(ActionType.BUILD_1_BARN_OR_BAKE_BREAD)
                 .withType(ActionType.DAY_LABOUR);
 
     }

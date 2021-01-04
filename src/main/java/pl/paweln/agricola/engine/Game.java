@@ -6,10 +6,8 @@ import pl.paweln.agricola.action.Action;
 import pl.paweln.agricola.action.ActionType;
 import pl.paweln.agricola.player.Player;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Game {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
@@ -83,6 +81,21 @@ public class Game {
         if (number <= 0 || number > this.playerList.size())
             throw new IllegalArgumentException("This game is configured for " + this.playerList.size() + " player(s), but requested is:" + number);
         return this.playerList.get(number-1);
+    }
+
+    public Action getAction (ActionType actionType) {
+        Action action = this.actionMap.get(actionType);
+        if (action == null) {
+            throw new IllegalArgumentException("This game does not contain action " + actionType);
+        }
+        return action;
+    }
+
+    /*
+    Returns the view of actions. No possibility to modify the view.
+     */
+    public List<Action> getActions() {
+        return this.actionMap.values().stream().collect(Collectors.toUnmodifiableList());
     }
 
     @Override
