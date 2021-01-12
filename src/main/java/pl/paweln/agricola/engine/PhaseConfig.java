@@ -14,7 +14,7 @@ public class PhaseConfig {
 
     private static List<Integer> harvestRounds = List.of(4, 7, 9, 11, 13, 14);
 
-    // middle - if increase the round number
+    // middle - whether or not to increase the round number
     private static Map<GamePhase, List<Triple<GameStatusTrigger, Boolean, GameStatus>>> rules =
             new HashMap<>();
 
@@ -38,14 +38,15 @@ public class PhaseConfig {
                     Arrays.asList(
                             Triple.of(GameStatusTrigger.NEXT_PLAYER, Boolean.FALSE, GameStatus.WORK_PHASE),
                             harvestRounds.contains(round) ?
-                                    Triple.of(GameStatusTrigger.NO_NEXT_PLAYER, Boolean.FALSE, GameStatus.WORK_RETURN) :
-                                    Triple.of(GameStatusTrigger.NO_NEXT_PLAYER, Boolean.FALSE, GameStatus.HARVEST_FIELD_PHASE)
+                                    Triple.of(GameStatusTrigger.NO_NEXT_PLAYER, Boolean.FALSE, GameStatus.HARVEST_FIELD_PHASE) :
+                                    Triple.of(GameStatusTrigger.NO_NEXT_PLAYER, Boolean.FALSE, GameStatus.WORK_RETURN)
+
                     )
             );
             // return (all return)-> prepare
             rules.put(new GamePhase(GameStatus.WORK_RETURN, round),
                     Arrays.asList(
-                            Triple.of(GameStatusTrigger.NO_NEXT_PLAYER, Boolean.TRUE, GameStatus.WORK_PHASE)
+                            Triple.of(GameStatusTrigger.NO_NEXT_PLAYER, Boolean.TRUE, GameStatus.WORK_PREPARE)
                     )
             );
         }
