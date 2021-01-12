@@ -2,16 +2,16 @@ package pl.paweln.agricola.engine.factory;
 
 import pl.paweln.agricola.action.ActionType;
 import pl.paweln.agricola.engine.Game;
-import pl.paweln.agricola.util.Randomizer;
 import pl.paweln.agricola.player.HouseType;
 import pl.paweln.agricola.player.ResourceType;
+import pl.paweln.agricola.util.Randomizer;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class AbstractGameFactory implements GameFactory {
-    protected GameBuilder gameBuilder = new GameBuilder();
+    protected GameBuilder gameBuilder = new GameBuilder(0);
 
     private final String gameName;
     private final List<String> players = new LinkedList<>();

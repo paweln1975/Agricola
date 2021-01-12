@@ -6,15 +6,17 @@ import pl.paweln.agricola.action.Action;
 import pl.paweln.agricola.action.ActionType;
 import pl.paweln.agricola.player.Player;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Game {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
 
     private String name;
-    private int roundNumber;
-    private GameStatus gameStatus;
+    private final GamePhase gamePhase;
     private int order;
 
     private final List<Player> playerList = new LinkedList<>();
@@ -22,8 +24,11 @@ public class Game {
     private final Map<ActionType, Action> actionMap = new LinkedHashMap<>();
 
     public Game() {
-        gameStatus = GameStatus.NEW;
-        roundNumber = 0;
+        this.gamePhase = new GamePhase();
+    }
+
+    public Game(int roundNumber) {
+        this.gamePhase = new GamePhase(GameStatus.NEW, roundNumber);
     }
 
     public String getName() {
@@ -38,14 +43,14 @@ public class Game {
     }
 
     public void setGameStatus(GameStatus gameStatus) {
-        this.gameStatus = gameStatus;
+        this.gamePhase.setGameStatus(gameStatus);
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("setGameStatus: %s", this.toString()));
         }
     }
 
     public GameStatus getGameStatus() {
-        return this.gameStatus;
+        return this.gamePhase.getGameStatus();
     }
 
     public void addPlayer(Player player) {
@@ -70,11 +75,11 @@ public class Game {
     public int getActionCount() { return this.actionMap.size(); }
 
     public int getRoundNumber() {
-        return roundNumber;
+        return this.gamePhase.getRound();
     }
 
     protected int increaseRoundNumber() {
-        return ++this.roundNumber;
+        return this.gamePhase.nextRound();
     }
 
     public Player getPlayer(int number) {
@@ -102,8 +107,7 @@ public class Game {
     public String toString() {
         return "Game{" +
                 "name='" + name + '\'' +
-                ", status=" + gameStatus +
-                ", roundNumber=" + roundNumber +
+                ", gamePhase=" + gamePhase+
                 '}';
     }
 }

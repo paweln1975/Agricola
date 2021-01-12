@@ -1,11 +1,11 @@
 package pl.paweln.agricola.engine.factory;
 
 import pl.paweln.agricola.engine.Game;
-import pl.paweln.agricola.util.Randomizer;
 import pl.paweln.agricola.player.Color;
 import pl.paweln.agricola.player.HouseType;
 import pl.paweln.agricola.player.Player;
 import pl.paweln.agricola.player.ResourceType;
+import pl.paweln.agricola.util.Randomizer;
 
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ public class GamePlayerBuilder extends GameBuilder {
             Arrays.asList(Color.values()));
 
     public GamePlayerBuilder(Game game, String playerName) {
-        super.game = game;
+        super(game);
         this.player = new Player(playerName);
         this.game.addPlayer(this.player);
     }
