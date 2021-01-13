@@ -14,7 +14,7 @@ public class EngineTest {
         engine.startGame();
 
         Assert.assertEquals(1, engine.getGame().getRoundNumber());
-        Assert.assertEquals(GameStatus.WORK_PHASE, engine.getGame().getGameStatus());
+        Assert.assertEquals(GameStatus.WORK_PREPARE, engine.getGame().getGameStatus());
     }
 
     @Test (expected = IllegalArgumentException.class)

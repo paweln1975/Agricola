@@ -8,7 +8,7 @@ public class GameBuilder {
 
     public GameBuilder(int roundNumber) {
         this.game = new Game(roundNumber);
-        this.game.setGameStatus(GameStatus.NEW);
+        this.game.getGamePhase().setGameStatus(GameStatus.NEW);
     }
 
     protected GameBuilder(Game game) {
@@ -21,7 +21,12 @@ public class GameBuilder {
     }
 
     public GameBuilder withGameStatus(GameStatus gameStatus) {
-        this.game.setGameStatus(gameStatus);
+        this.game.getGamePhase().setGameStatus(gameStatus);
+        return this;
+    }
+
+    public GameBuilder withGameRound(int round) {
+        this.game.getGamePhase().setRound(round);
         return this;
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Game {
+public class Game implements GamePhaseHandler {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
 
     private String name;
@@ -42,17 +42,6 @@ public class Game {
         }
     }
 
-    public void setGameStatus(GameStatus gameStatus) {
-        this.gamePhase.setGameStatus(gameStatus);
-        if (logger.isDebugEnabled()) {
-            logger.debug(String.format("setGameStatus: %s", this.toString()));
-        }
-    }
-
-    public GameStatus getGameStatus() {
-        return this.gamePhase.getGameStatus();
-    }
-
     public void addPlayer(Player player) {
         this.playerList.add(player);
         if (logger.isDebugEnabled()) {
@@ -68,19 +57,25 @@ public class Game {
         }
     }
 
+    public GameStatus getGameStatus() {
+        return this.gamePhase.getGameStatus();
+    }
+
+    public GamePhase getGamePhase() {
+        return gamePhase;
+    }
+
+    public int getRoundNumber() {
+        return this.gamePhase.getRound();
+    }
+
     public int getPlayersCount() {
         return this.playerList.size();
     }
 
     public int getActionCount() { return this.actionMap.size(); }
 
-    public int getRoundNumber() {
-        return this.gamePhase.getRound();
-    }
 
-    protected int increaseRoundNumber() {
-        return this.gamePhase.nextRound();
-    }
 
     public Player getPlayer(int number) {
         if (number <= 0 || number > this.playerList.size())
@@ -109,5 +104,15 @@ public class Game {
                 "name='" + name + '\'' +
                 ", gamePhase=" + gamePhase+
                 '}';
+    }
+
+
+    @Override
+    public void processGamePhaseEvent(GamePhaseEventArgs<Engine> args) {
+        this.gamePhase.setGameStatus(args.getGameStatus());
+        if (args.getRound() != this.gamePhase.getRound()) {
+            this.gamePhase.nextRound();
+        }
+
     }
 }

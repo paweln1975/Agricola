@@ -28,6 +28,11 @@ public class GamePhase {
         return ++this.round;
     }
 
+    public void setRound(int round) {
+        validateRound(round);
+        this.round = round;
+    }
+
     public void setGameStatus(GameStatus status) {
         this.gameStatus = status;
     }
