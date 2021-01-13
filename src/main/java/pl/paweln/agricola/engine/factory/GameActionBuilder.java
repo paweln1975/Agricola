@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class GameActionBuilder extends GameBuilder {
 
     public GameActionBuilder(Game game) {
-        super.game = game;
+        super(game);
     }
 
     public GameActionBuilder withType(ActionType actionType) {

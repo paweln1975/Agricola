@@ -2,8 +2,11 @@ package pl.paweln.agricola.action.factory;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pl.paweln.agricola.action.*;
-import pl.paweln.agricola.engine.Engine;
+import pl.paweln.agricola.action.Action;
+import pl.paweln.agricola.action.ActionType;
+import pl.paweln.agricola.action.PlowFieldAction;
+import pl.paweln.agricola.action.ResourceAction;
+import pl.paweln.agricola.engine.GamePhase;
 import pl.paweln.agricola.player.ResourceType;
 
 public class ActionBuilderTest {
@@ -34,7 +37,7 @@ public class ActionBuilderTest {
         ResourceActionBuilder builder = new ResourceActionBuilder(ActionType.TAKE_WOOD_3_ACC);
         builder.withName("Take 3 wood")
                 .withResourceType(ResourceType.WOOD)
-                .availableFromRound(Engine.ROUND_MAX +1)
+                .availableFromRound(GamePhase.ROUND_MAX +1)
                 .withAccumulation(3)
                 .withAccumulationEveryRound()
                 .build();

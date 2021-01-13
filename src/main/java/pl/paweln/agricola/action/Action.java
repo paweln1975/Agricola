@@ -1,6 +1,6 @@
 package pl.paweln.agricola.action;
 
-import pl.paweln.agricola.engine.Engine;
+import pl.paweln.agricola.engine.GamePhase;
 import pl.paweln.agricola.player.Player;
 
 public abstract class Action {
@@ -31,7 +31,7 @@ public abstract class Action {
     public abstract void perform();
 
     public void setRoundNumberAvailable(int numberAvailable) {
-        if (numberAvailable < 0 || numberAvailable > Engine.ROUND_MAX) {
+        if (numberAvailable < 0 || numberAvailable > GamePhase.ROUND_MAX) {
             throw new IllegalArgumentException("Incorrect round number");
         }
         this.roundNumberAvailable = numberAvailable;

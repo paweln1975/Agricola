@@ -6,15 +6,17 @@ import pl.paweln.agricola.action.Action;
 import pl.paweln.agricola.action.ActionType;
 import pl.paweln.agricola.player.Player;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Game {
+public class Game implements GamePhaseHandler {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
 
     private String name;
-    private int roundNumber;
-    private GameStatus gameStatus;
+    private final GamePhase gamePhase;
     private int order;
 
     private final List<Player> playerList = new LinkedList<>();
@@ -22,8 +24,11 @@ public class Game {
     private final Map<ActionType, Action> actionMap = new LinkedHashMap<>();
 
     public Game() {
-        gameStatus = GameStatus.NEW;
-        roundNumber = 0;
+        this.gamePhase = new GamePhase();
+    }
+
+    public Game(int roundNumber) {
+        this.gamePhase = new GamePhase(GameStatus.NEW, roundNumber);
     }
 
     public String getName() {
@@ -35,17 +40,6 @@ public class Game {
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("setName: %s", this.toString()));
         }
-    }
-
-    public void setGameStatus(GameStatus gameStatus) {
-        this.gameStatus = gameStatus;
-        if (logger.isDebugEnabled()) {
-            logger.debug(String.format("setGameStatus: %s", this.toString()));
-        }
-    }
-
-    public GameStatus getGameStatus() {
-        return this.gameStatus;
     }
 
     public void addPlayer(Player player) {
@@ -63,19 +57,25 @@ public class Game {
         }
     }
 
+    public GameStatus getGameStatus() {
+        return this.gamePhase.getGameStatus();
+    }
+
+    public GamePhase getGamePhase() {
+        return gamePhase;
+    }
+
+    public int getRoundNumber() {
+        return this.gamePhase.getRound();
+    }
+
     public int getPlayersCount() {
         return this.playerList.size();
     }
 
     public int getActionCount() { return this.actionMap.size(); }
 
-    public int getRoundNumber() {
-        return roundNumber;
-    }
 
-    protected int increaseRoundNumber() {
-        return ++this.roundNumber;
-    }
 
     public Player getPlayer(int number) {
         if (number <= 0 || number > this.playerList.size())
@@ -102,8 +102,17 @@ public class Game {
     public String toString() {
         return "Game{" +
                 "name='" + name + '\'' +
-                ", status=" + gameStatus +
-                ", roundNumber=" + roundNumber +
+                ", gamePhase=" + gamePhase+
                 '}';
+    }
+
+
+    @Override
+    public void processGamePhaseEvent(GamePhaseEventArgs<Engine> args) {
+        this.gamePhase.setGameStatus(args.getGameStatus());
+        if (args.getRound() != this.gamePhase.getRound()) {
+            this.gamePhase.nextRound();
+        }
+
     }
 }
