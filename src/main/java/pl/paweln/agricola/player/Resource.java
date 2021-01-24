@@ -22,4 +22,12 @@ public class Resource {
     public ResourceType getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "type=" + type +
+                ", value=" + value +
+                '}';
+    }
 }

@@ -71,6 +71,16 @@ public class Player {
         this.resources.get(resourceType).setValue(value);
     }
 
+    public void addResourceAmount(ResourceType resourceType, int value) {
+        this.resources.get(resourceType).setValue(
+            this.resources.get(resourceType).getValue() + value);
+    }
+
+    public void returnResourceAmount(ResourceType resourceType, int value) {
+        this.resources.get(resourceType).setValue(
+                this.resources.get(resourceType).getValue() - value);
+    }
+
     @Override
     public String toString() {
         return "Player{" +

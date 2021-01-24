@@ -1,9 +1,15 @@
 package pl.paweln.agricola.action;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.paweln.agricola.engine.GamePhase;
+import pl.paweln.agricola.engine.GamePhaseHandler;
+import pl.paweln.agricola.engine.action.ActionParams;
 import pl.paweln.agricola.player.Player;
 
-public abstract class Action {
+public abstract class Action implements GamePhaseHandler {
+    protected static final Logger logger = LoggerFactory.getLogger(Action.class);
+
     private final ActionType actionType;
     protected Player player;
     private int roundNumberAvailable;
@@ -24,11 +30,13 @@ public abstract class Action {
         return this.player != null;
     }
 
-    /*
-    This action will be executed when action is performed
-    Interface will be changed with Player and Command parameters
-     */
-    public abstract void perform();
+    public Player getPlayer() {
+        return player;
+    }
+
+    public abstract ActionParams perform(Player player, ActionParams actionParams);
+
+    public abstract void rollback(ActionParams actionParams);
 
     public void setRoundNumberAvailable(int numberAvailable) {
         if (numberAvailable < 0 || numberAvailable > GamePhase.ROUND_MAX) {
